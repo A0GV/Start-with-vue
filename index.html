@@ -9,7 +9,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg"
-    :class="{'navbar-light bg-light': !useDarkNavbar, 'navbar-dark bg-dark': useDarkNavbar}">
+    :class="navBarClasses">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">My Vue</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -35,28 +35,38 @@
 
     <script>
         Vue.createApp({
-            data(){
-                return{
+            computed: {
+                navBarClasses() {
+                    return {
+                        'navbar-light': !this.useDarkNavbar,
+                        'bg-light': !this.useDarkNavbar,
+                        'navbar-dark': this.useDarkNavbar,
+                        'bg-dark': this.useDarkNavbar
+                    };
+                }
+            },
+            data() {
+                return {
                     activePage: 0,
                     useDarkNavbar: true,
-                   pages:[
-                   {
-                    link:{text:'Home',url:'index.html'},
-                    PageTitle:'Home Page',
-                    content:'This is the home content'
-                   },
-                   {
-                    link:{text:'About',url:'about.html'},
-                    PageTitle:'About page',
-                    content:'This is the about content'
-                   },    
-                   {
-                    link:{text:'Contact',url:'contact.html'},
-                    PageTitle:'Contact Page',
-                    content:'This is the contact page'
-                   }
-                   ]
-                }; 
+                    pages: [
+                        {
+                            link: { text: 'Home', url: 'index.html' },
+                            PageTitle: 'Home Page',
+                            content: 'This is the home content'
+                        },
+                        {
+                            link: { text: 'About', url: 'about.html' },
+                            PageTitle: 'About Page',
+                            content: 'This is the about content'
+                        },
+                        {
+                            link: { text: 'Contact', url: 'contact.html' },
+                            PageTitle: 'Contact Page',
+                            content: 'This is the contact page'
+                        }
+                    ]
+                };
             }
         }).mount('body');
     </script>
